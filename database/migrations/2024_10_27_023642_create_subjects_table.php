@@ -13,10 +13,10 @@
         {
             Schema::create('subjects', function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+                $table->string('faculty_name')->nullable();
                 $table->integer('units');
                 $table->string('description');
-                $table->integer('subjectCode');
+                $table->string('subjectCode');
                 $table->string('room');
                 $table->timestamps();
             });

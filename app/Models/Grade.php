@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use App\Models\User;
 use App\Models\Subjects;
+use App\Models\Period;
+use App\Models\Enrollment;
 
 class Grade extends Model
 {
@@ -15,11 +17,11 @@ class Grade extends Model
     protected $fillable = [
         'user_id',
         'subject_id',
-        'prelim',
-        'midterm',
-        'semifinal',
-        'final',
-        'status'
+        'faculty_name',
+        'period_id',
+        'enrollment_id',
+        'grade',
+        'status',
     ];
 
     public function user() {
@@ -29,4 +31,13 @@ class Grade extends Model
     public function subject() {
         return $this->belongTo(Subject::class);
     }
+    
+    public function period() {
+        return $this->belongsTo(Period::class);
+    }
+    
+    public function enrollment() {
+        return $this->belongsTo(Enrollment::class);
+    }
+
 }

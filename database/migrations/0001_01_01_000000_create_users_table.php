@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('usertype')->default('student');
+            $table->foreignId('role_id')->nullable()->constrained('roles')->onDelete('cascade');
             $table->string('unique_id')->unique();
             $table->string('lastname')->nullable();
             $table->string('firstname')->nullabe();
@@ -21,8 +21,7 @@ return new class extends Migration
             $table->string('course')->nullable();
             $table->string('department')->nullable();
             $table->String('year')->nullable();
-            $table->string('degree')->nullable();
-            $table->string('age')->nullable();
+            $table->integer('age')->nullable();
             $table->string('gender')->nullable();
             $table->string('status')->nullable();
             $table->string('email')->unique();

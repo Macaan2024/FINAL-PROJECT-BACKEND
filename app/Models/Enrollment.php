@@ -1,20 +1,21 @@
 <?php
 
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use App\Models\User;
 use App\Models\Subject;
 
-class EnrolledSubject extends Model
+class Enrollment extends Model
 {
     use HasFactory, Notifiable;
-
-    protected $table = 'enrolled_subjects';
 
     protected $fillable = [
         'user_id',
         'subject_id',
+        'faculty_name',
         'semester',
         'schoolYear'
     ];

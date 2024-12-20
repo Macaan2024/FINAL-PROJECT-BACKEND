@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Grade;
-use App\Models\EnrolledSubject;
+use App\Models\Role;
+use App\Models\Enrollment;
 use Faker\Factory as Faker; // Correct import for Faker
 
 class User extends Authenticatable
@@ -21,7 +22,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'usertype',
+        'role_id',
         'unique_id',
         'lastname',
         'firstname',
@@ -30,7 +31,6 @@ class User extends Authenticatable
         'course',
         'year',
         'department',
-        'degree',
         'age',
         'status',
         'email',
@@ -43,10 +43,13 @@ class User extends Authenticatable
         return $this->hasMany(Grade::class);
     }
 
-    public function enrolledSubject() {
-        return $this->hasMany(EnrolledSubject::class);
+    public function enrollment() {
+        return $this->hasMany(Enrollment::class);
     }
 
+    public function role() {
+        return $this->belongsTo(Role::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

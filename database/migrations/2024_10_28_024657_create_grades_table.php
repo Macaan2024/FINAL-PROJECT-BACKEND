@@ -14,9 +14,13 @@ return new class extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('faculty_name');
             $table->foreignId('period_id')->constrained('periods')->onDelete('cascade');
             $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade');
             $table->foreignId('enrollment_id')->constrained('enrollments')->onDelete('cascade');
+            $table->integer("grade")->nullable();
+            $table->string("status")->nullable();
+            $table->unique(['user_id', 'subject_id', 'period_id', 'enrollment_id']);
             $table->timestamps();
         });
     }
@@ -27,9 +31,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('grades');
-        // Schema::dropIfExists('users');
-        // Schema::dropIfExists('periods');
-        // Schema::dropIfExists('subjects');
-        // Schema::dropIfExists('enrollments');
     }
 };

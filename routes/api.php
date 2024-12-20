@@ -7,10 +7,19 @@
     use App\Http\Controllers\EnrollmentController;
     use App\Http\Controllers\GradeController;
     use App\Http\Controllers\FeedbacksController;
+    use App\Http\Controllers\RolesController;
+    use App\Http\Controllers\PeriodController;
 
-    Route::post('/register', [UserController::class, 'register']);
+    Route::post('/register', [LoginController::class, 'register']);
     Route::post('/login', [LoginController::class, 'login']);
     Route::get('/logout', [LoginController::class, 'show']);
+
+    //Teacher Crud
+    Route::post('/role', [RolesController::class, 'store']);
+    Route::get('/role', [RolesController::class, 'index']);
+    Route::get('/role/{id}', [RolesController::class, 'show']);
+    Route::put('/role/{id}', [RolesController::class, 'update']);
+    Route::delete('/role/{id}', [RolesController::class, 'destroy']);
 
 
     //User Crud
@@ -20,18 +29,27 @@
     Route::put('/user/{id}', [UserController::class, 'update']);
     Route::delete('/user/{id}', [UserController::class, 'destroy']);
 
+
     // CRUD SUBJECT
     Route::post('/subject', [SubjectController::class, 'store']);
     Route::get('/subject', [SubjectController::class, 'index']);
     Route::get('/subject/{id}', [SubjectController::class, 'show']);
     Route::put('/subject/{id}', [SubjectController::class, 'update']);
     Route::delete('/subject/{id}', [SubjectController::class, 'destroy']);  
+
     //Enrollment
     Route::post('/enrollment', [EnrollmentController::class, 'store']);
-    Route::get('/enrollment', [EnrollmentController::class, 'index']);
-    Route::get('/enrollment/{id}', [EnrollmentController::class, 'show']);
+    Route::get('/index-enrollment/{id}', [EnrollmentController::class, 'index']);
+    Route::get('/show-enrollment/{id}', [EnrollmentController::class, 'show']);
     Route::put('/enrollment/{id}', [EnrollmentController::class, 'update']);
     Route::delete('/enrollment/{id}', [EnrollmentController::class, 'destroy']);
+
+    //Period 
+    Route::get('/period', [PeriodController::class, 'index']);
+    Route::post('/period', [PeriodController::class, 'store']);
+    Route::get('/period/{id}', [PeriodController ::class, 'show']);
+    Route::put('/period/{id}', [PeriodController::class, 'update']);
+    Route::get('/period/{id}', [PeriodController::class, 'destory']);
 
     // CRUD GRADES
     Route::get('/grade', [GradeController::class, 'index']);
@@ -39,6 +57,15 @@
     Route::get('/grade/{id}', [GradeController ::class, 'show']);
     Route::put('/grade/{id}', [GradeController::class, 'update']);
     Route::get('/grade/{id}', [GradeController::class, 'destory']);
+    Route::get('/grade/{id}/{period}', [GradeController::class, 'getGrade']);
+    
+    Route::get('/grade/{id}/prelim', [GradeController ::class, 'prelim']);
+    Route::get('/grade/{id}/midterm', [GradeController ::class, 'midterms']);
+    Route::get('/grade/{id}/semifinal', [GradeController ::class, 'semiFinal']);
+    Route::get('/grade/{id}/final', [GradeController ::class, 'final']);
+
+
+
 
     // CRUD FEEDBACKS
     Route::post('/feedbacks', [FeedbacksController::class, 'store']);
