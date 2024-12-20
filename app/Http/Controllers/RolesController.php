@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Role;    
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use App\Models\User;
 
 class RolesController extends Controller
 {
@@ -20,12 +21,12 @@ class RolesController extends Controller
         try {
 
             // Create a new user
-            Role::create([
+            $role = Role::create([
                 'description' => $validated['description'],
             ]);
 
             // Return a response or redirect on success
-            return response()->json(['message' => 'Role successfully assign'], 201);
+            return response()->json(['message' => 'Role successfully assign', 'role' => $role], 200);
 
         } catch (\Exception $e) {
             // Log the exception for debugging
@@ -34,5 +35,18 @@ class RolesController extends Controller
             // Return a generic error message to the client
             return response()->json(['error' => 'Something went wrong. Please try again.'], 500);
         }
+    }
+
+    public function update ($id, Request $request) {
+
+        $validate = $request->validate([
+            'description' => 'required'
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $user->description = $validatedData('description');
+
+        return 
     }
 }

@@ -18,7 +18,7 @@
     Route::post('/role', [RolesController::class, 'store']);
     Route::get('/role', [RolesController::class, 'index']);
     Route::get('/role/{id}', [RolesController::class, 'show']);
-    Route::put('/role/{id}', [RolesController::class, 'update']);
+    Route::put('/update-role/{id}', [RolesController::class, 'update']);
     Route::delete('/role/{id}', [RolesController::class, 'destroy']);
 
 
@@ -38,7 +38,7 @@
     Route::delete('/subject/{id}', [SubjectController::class, 'destroy']);  
 
     //Enrollment
-    Route::post('/enrollment', [EnrollmentController::class, 'store']);
+    Route::post('/add-enrollment', [EnrollmentController::class, 'store']);
     Route::get('/index-enrollment/{id}', [EnrollmentController::class, 'index']);
     Route::get('/show-enrollment/{id}', [EnrollmentController::class, 'show']);
     Route::put('/enrollment/{id}', [EnrollmentController::class, 'update']);
