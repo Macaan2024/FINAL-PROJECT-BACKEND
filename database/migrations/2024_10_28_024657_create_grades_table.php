@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('period_id')->constrained('periods')->onDelete('cascade');
             $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade');
             $table->foreignId('enrollment_id')->constrained('enrollments')->onDelete('cascade');
-            $table->integer("grade")->nullable();
+            $table->double("grade")->nullable();
             $table->string("status")->nullable();
             $table->unique(['user_id', 'subject_id', 'period_id', 'enrollment_id']);
             $table->timestamps();

@@ -47,6 +47,6 @@ class RolesController extends Controller
 
         $user->description = $validatedData('description');
 
-        return 
+        return response()->json($user, 200);
     }
 }

@@ -58,7 +58,7 @@
     Route::put('/grade/{id}', [GradeController::class, 'update']);
     Route::get('/grade/{id}', [GradeController::class, 'destory']);
     
-
+    Route::get('/getGPA/{id}', [GradeController::class, 'getGPA']);
     Route::get('/grade/{id}/{period_id}', [GradeController::class, 'fetchGrade']);
     
     // Route::get('/grade/{id}/{userId}/1', [GradeController::class, 'prelim']);

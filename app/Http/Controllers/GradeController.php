@@ -111,5 +111,20 @@ class GradeController extends Controller
         }
     
         return response()->json($grade, 200);
-    }    
+    }
+    
+    public function getGPA($id) {
+        $grades = Grade::where('enrollment_id', $id)->get();
+    
+        if ($grades->isEmpty()) {
+            return response()->json(['message' => 'No grades available for computation'], 400);
+        }
+    
+        // Extract the grades and calculate the GPA
+        $totalGrades = $grades->pluck('grade')->sum(); // Sum all grades
+        $numberOfSubjects = $grades->count(); // Count the number of subjects
+        $finalGPA = $totalGrades / $numberOfSubjects; // Compute GPA
+    
+        return response()->json(['GPA' => round($finalGPA, 2)], 200); // Round GPA to 2 decimal places
+    }
 }
