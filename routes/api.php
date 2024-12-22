@@ -57,12 +57,14 @@
     Route::get('/grade/{id}', [GradeController ::class, 'show']);
     Route::put('/grade/{id}', [GradeController::class, 'update']);
     Route::get('/grade/{id}', [GradeController::class, 'destory']);
-    Route::get('/grade/{id}/{period}', [GradeController::class, 'getGrade']);
     
-    Route::get('/grade/{id}/prelim', [GradeController ::class, 'prelim']);
-    Route::get('/grade/{id}/midterm', [GradeController ::class, 'midterms']);
-    Route::get('/grade/{id}/semifinal', [GradeController ::class, 'semiFinal']);
-    Route::get('/grade/{id}/final', [GradeController ::class, 'final']);
+
+    Route::get('/grade/{id}/{period_id}', [GradeController::class, 'fetchGrade']);
+    
+    // Route::get('/grade/{id}/{userId}/1', [GradeController::class, 'prelim']);
+    // Route::get('/grade/{id}/{userId}/2', [GradeController::class, 'midterm']);
+    // Route::get('/grade/{id}/{userId}/3', [GradeController::class, 'semifinal']);
+    // Route::get('/grade/{id}/{userId}/4', [GradeController::class, 'final']);
 
 
 

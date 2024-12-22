@@ -44,11 +44,11 @@ class GradeController extends Controller
     }
     
 
-    public function prelim($id, $subject, $enrollment) {
+    public function prelim($id, $userId, $period_id) {
         // Fetch the prelim grade based on user_id, subject_id, and enrollment
-        $prelimGrade = Grade::where('user_id', $id)
-                            ->where('subject_id', $subject)
-                            ->where('enrollment', $enrollment)
+        $prelimGrade = Grade::where('enrollment_id', $id)
+                            ->where('user_id', $userId)
+                            ->where('period_id', $period_id)
                             ->first();
     
         if (!$prelimGrade) {
@@ -58,11 +58,11 @@ class GradeController extends Controller
         return response()->json($prelimGrade, 200);
     }
 
-    public function midterm($id, $subject, $enrollment) {
+    public function midterm($id, $userId, $period_id) {
         // Fetch the prelim grade based on user_id, subject_id, and enrollment
-        $midtermGrade = Grade::where('user_id', $id)
-                            ->where('subject_id', $subject)
-                            ->where('enrollment', $enrollment)
+        $midtermGrade = Grade::where('enrollment_id', $id)
+                            ->where('user_id', $userId)
+                            ->where('period_id', $period_id)
                             ->first();
     
         if (!$midtermGrade) {
@@ -72,11 +72,11 @@ class GradeController extends Controller
         return response()->json($midtermGrade, 200);
     }
 
-    public function semifinal($id, $subject, $enrollment) {
+    public function semifinal($id, $userId, $period_id) {
         // Fetch the prelim grade based on user_id, subject_id, and enrollment
-        $semifinalGrade = Grade::where('user_id', $id)
-                            ->where('subject_id', $subject)
-                            ->where('enrollment', $enrollment)
+        $semifinalGrade = Grade::where('enrollment_id', $id)
+                            ->where('user_id', $userId)
+                            ->where('period_id', $period_id)
                             ->first();
     
         if (!$semifinalGrade) {
@@ -86,11 +86,11 @@ class GradeController extends Controller
         return response()->json($semifinalGrade, 200);
     }
 
-    public function final($id, $subject, $enrollment) {
+    public function final($id, $userId, $period_id) {
         // Fetch the prelim grade based on user_id, subject_id, and enrollment
-        $finalGrade = Grade::where('user_id', $id)
-                            ->where('subject_id', $subject)
-                            ->where('enrollment', $enrollment)
+        $finalGrade = Grade::where('enrollment_id', $id)
+                            ->where('user_id', $userId)
+                            ->where('period_id', $period_id)
                             ->first();
     
         if (!$finalGrade) {
@@ -99,4 +99,17 @@ class GradeController extends Controller
 
         return response()->json($finalGrade, 200);
     }
+
+    public function fetchGrade($id, $period_id) {
+        $grade = Grade::with('user')
+                      ->where('enrollment_id', $id)
+                      ->where('period_id', $period_id)
+                      ->first();
+    
+        if (!$grade) {
+            return response()->json(['message' => 'No Grades found'], 404);
+        }
+    
+        return response()->json($grade, 200);
+    }    
 }
