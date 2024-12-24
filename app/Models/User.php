@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Grade;
 use App\Models\Role;
 use App\Models\Enrollment;
+use App\Models\Feedback;
 use Faker\Factory as Faker; // Correct import for Faker
 
 class User extends Authenticatable
@@ -49,6 +50,10 @@ class User extends Authenticatable
 
     public function role() {
         return $this->belongsTo(Role::class);
+    }
+
+    public function feedback() {
+        return $this->hasMany(Feedback::class);
     }
     /**
      * The attributes that should be hidden for serialization.

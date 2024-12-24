@@ -44,7 +44,20 @@ class SubjectController extends Controller
         }
     }
 
-    public function index($id)
+    public function index () {
+
+        $subject = Subject::all();
+
+        if ($subject) {
+            return response()->json(['subject' => $subject],200);
+        }else {
+            return response()->json(['message' => `Can't Display Subjects`],400);
+        }
+    }
+
+
+
+    public function fetchSubjects($id)
     {
         $enrolledSubjects = Enrollment::with('subject')
                                         ->where('user_id', $id)

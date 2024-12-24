@@ -114,7 +114,7 @@ class GradeController extends Controller
     }
     
     public function getGPA($id) {
-        $grades = Grade::where('enrollment_id', $id)->get();
+        $grades = Grade::where('enrollment_id', $id)->get();        
     
         if ($grades->isEmpty()) {
             return response()->json(['message' => 'No grades available for computation'], 400);
